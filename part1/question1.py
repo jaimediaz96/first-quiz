@@ -13,23 +13,32 @@
 # need to be fixed. The test suite in `question1_test.py` will verify the output.
 # Read the test suite to know the values that these functions should return.
 
+CITY_TEMPERATURE_MAP = {
+    "Quito": 22,
+    "Sao Paulo": 17,
+    "San Francisco": 16,
+    "New York": 14,
+}
+
+CITY_WEATHER_MAP = {
+    "Quito": "sunny",
+    "Sao Paulo": "cloudy",
+    "San Francisco": "windy",
+    "New York": "rainy",
+}
+
+
 def get_city_temperature(city):
-   if city == "Quito":
-      return 22
-   if city == "Sao Paulo":
-      return 17
-   if city == "San Francisco":
-      return 16
+    try:
+        return CITY_TEMPERATURE_MAP[city]
+    except KeyError:
+        return None
+
 
 def get_city_weather(city):
-
-  sky_condition = None
-
-  if city == "Sao Paulo":
-     sky_condition = "cloudy"
-  elif city == "New York":
-     sky_condition = "rainy"
-
-  temperature = get_city_temperature(city)
-
-  return str(temperature) + " degrees and " + sky_condition
+    try:
+        sky_condition = CITY_WEATHER_MAP[city]
+        temperature = get_city_temperature(city)
+        return f"{temperature} degrees and {sky_condition}"
+    except KeyError:
+        return None
